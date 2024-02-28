@@ -154,7 +154,7 @@ class _SortedByCategoryPageState extends State<SortedByCategoryPage> {
                                                       ),
                                                       Text(
                                                         widget.channels[index]
-                                                            .languages[0].name,
+                                                            .languages[0],
                                                         style: TextStyle(
                                                             color: index ==
                                                                     currentIndex

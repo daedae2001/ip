@@ -18,15 +18,10 @@ final countryProvider =
         if (channel.countries.isNotEmpty) {
           x++;
 
-          for (Country element in channel.countries) {
-            // print(sortedByCountry.runtimeType);
-            // print("gindo");
-            // print(element);
-            // print(element.name);
-            if (element.name != "") {
-              // sortedByCountry[element.name]!.add(channel);
-              sortedByCountry[element.name] = [
-                ...?sortedByCountry[element.name],
+          for (String element in channel.countries) {
+            if (element.isNotEmpty) {
+              sortedByCountry[element] = [
+                ...?sortedByCountry[element],
                 channel
               ];
             }

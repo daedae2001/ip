@@ -12,15 +12,15 @@ Future<List<ChannelObj>?> fetchChannels() async {
     for (var channel in response.data) {
       ChannelObj channelObj = ChannelObj.fromJson(channel);
 
-      if (channelObj.categories.isNotEmpty) {
-        if (channelObj.categories[0].name != "XXX") {
-          channels.add(channelObj);
-        }
-      }
+      //if (channelObj.categories.isNotEmpty) {
+      // if (channelObj.categories[0].name != "XXX") {
+      channels.add(channelObj);
+      //  }
+      //}
     }
     print("salmm");
 
-    print(channels[0].countries[0].name);
+    print(channels[0].countries[0]);
     List<ChannelObj> repairChannels = channels.toSet().toList();
 
     return repairChannels;

@@ -11,10 +11,10 @@ final languageProvider =
       for (ChannelObj channelObj in value!) {
         // log((channelObj.languages[0].name.toString()));
         if (channelObj.languages.isNotEmpty) {
-          sortedByLanguage.keys.contains(channelObj.languages[0].name)
+          sortedByLanguage.keys.contains(channelObj.languages[0])
               ? print("language added before")
-              : sortedByLanguage[channelObj.languages[0].name] = [];
-          sortedByLanguage[channelObj.languages[0].name]?.add(channelObj);
+              : sortedByLanguage[channelObj.languages[0]] = [];
+          sortedByLanguage[channelObj.languages[0]]?.add(channelObj);
         }
       }
       print("sisi");

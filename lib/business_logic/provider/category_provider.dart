@@ -28,23 +28,16 @@ final categoryProvider =
           if (channel.countries.isNotEmpty) {
             if (countryCode.state.isNotEmpty) {
               for (var element in channel.countries) {
-                bool containCountry =
-                    countryCode.state.keys.contains(element.name);
-                if (!containCountry) {
-                  countryCode.state[element.name] = element.code;
-                } else {
-                  countryCode.state[element.name] = element.code;
-                }
+                bool containCountry = countryCode.state.keys.contains(element);
               }
             } else {
-              countryCode.state[channel.countries[0].name] =
-                  channel.countries[0].code;
+              countryCode.state[channel.countries[0]] = channel.countries[0];
             }
           }
 
           x++;
 
-          switch (channel.categories[0].name) {
+          switch (channel.categories[0]) {
             case "Animation":
               categoriesChannels.state.forEach((element) =>
                   element.name == "Animation" ? element.channelCount++ : null);

@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-//import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ip/presentation/screens/splash/splash_screen.dart';
+
+import 'business_logic/services/m3u_a_json.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Color(0xff1a1726)));
-
+  String m3uFilePath = 'canales.m3u';
+  String outputJsonFilePath = 'canales.json';
+  m3uToJson(m3uFilePath, outputJsonFilePath);
   runApp(ProviderScope(
     child: MaterialApp(
       themeMode: ThemeMode.system,
       title: "ip",
       debugShowCheckedModeBanner: false,
-      //  theme: ThemeData(
-      //    textTheme: GoogleFonts.soraTextTheme(),
-      //   scaffoldBackgroundColor: Color(0xff1a1726),
-      //     ),
+      theme: ThemeData(
+        textTheme: GoogleFonts.soraTextTheme(),
+        scaffoldBackgroundColor: Color(0xff1a1726),
+      ),
       home: MyApp(),
     ),
   ));
