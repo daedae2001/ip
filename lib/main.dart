@@ -10,9 +10,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Color(0xff1a1726)));
-  String m3uFilePath = 'canales.m3u';
-  String outputJsonFilePath = 'canales.json';
-  m3uToJson(m3uFilePath, outputJsonFilePath);
+
   runApp(ProviderScope(
     child: MaterialApp(
       themeMode: ThemeMode.system,

@@ -15,19 +15,20 @@ class TvgObj {
     this.url,
   });
 
-  String ?id;
-  String ?name;
-  String ?url;
+  String? id;
+  String? name;
+  String? url;
 
   factory TvgObj.fromJson(Map<String, dynamic> json) => TvgObj(
-    id: json["id"]??"",
-    name: json["name"]??"",
-    url: json["url"]??"",
-  );
+        id: json["id"] ?? "sin id",
+        name: json["name"] ?? "sin nombre",
+        url: json["url"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/f/f2/SiN_Logo.png",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "url": url,
-  };
+        "id": id,
+        "name": name,
+        "url": url,
+      };
 }

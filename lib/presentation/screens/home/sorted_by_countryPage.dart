@@ -21,14 +21,14 @@ class SortedByCountryPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final category = ref.watch(categoryProvider);
-    final countryCode = ref.watch(countryCodeProvider.state);
+    final countryCode = ref.watch(countryCodeProvider);
     final countrys = ref.watch(countryProvider);
 
-    final currentIndex = ref.watch(currentIndexProvider.state);
+    var currentIndex = ref.watch(currentIndexProvider);
 
     return category.when(
       data: (data) {
-        List countryCode2 = countryCode.state.entries
+        List countryCode2 = countryCode.entries
             .map((entry) => ([entry.key, entry.value]))
             .toList();
         return SafeArea(
@@ -80,7 +80,7 @@ class SortedByCountryPage extends ConsumerWidget {
                                 .value![countryCode2[index][0]]!.length
                                 .toString());
                             return Transform.scale(
-                              scale: index == currentIndex.state ? 1 : 0.7,
+                              scale: index == currentIndex ? 1 : 0.7,
                               child: GestureDetector(
                                 onTap: () {
                                   print(countryCode2[index][0]);
@@ -115,7 +115,7 @@ class SortedByCountryPage extends ConsumerWidget {
                                         ),
                                       ),
                                       Text(
-                                        index == currentIndex.state
+                                        index == currentIndex
                                             ? countryCode2[index][0].toString()
                                             : "",
                                         style: const TextStyle(
@@ -130,7 +130,7 @@ class SortedByCountryPage extends ConsumerWidget {
                                         height: 5,
                                       ),
                                       Text(
-                                        index == currentIndex.state
+                                        index == currentIndex
                                             ? countrys
                                                     .value![countryCode2[index]
                                                         [0]]!
@@ -147,7 +147,7 @@ class SortedByCountryPage extends ConsumerWidget {
                           },
                           options: CarouselOptions(
                               onPageChanged: (index, reason) =>
-                                  currentIndex.state = index,
+                                  currentIndex = index,
                               aspectRatio: 16 / 9,
                               viewportFraction: 0.17,
                               autoPlay: false,

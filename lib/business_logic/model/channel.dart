@@ -27,20 +27,22 @@ class ChannelObj {
   List<String> languages;
 
   factory ChannelObj.fromJson(Map<String, dynamic> json) => ChannelObj(
-        name: json["name"] ?? "",
-        logo: json["logo"] ?? "",
-        url: json["website"] ?? "",
-        countries: List<String>.from(json['broadcast_area']),
-        languages: List<String>.from(json['languages']),
-        categories: List<String>.from(json['categories']),
+        name: json["tvg-name"] ?? "sin nombre",
+        logo: json["tvg-logo"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/f/f2/SiN_Logo.png",
+        url: json["url"] ??
+            "https://upload.wikimedia.org/wikipedia/commons/f/f2/SiN_Logo.png",
+        countries: [json['group-title']],
+        languages: ['Es'],
+        categories: [json['group-title']],
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "logo": logo,
         "website": url,
-        "categories": List<String>.from(categories),
-        "broadcast_area": List<String>.from(countries),
-        "languages": List<String>.from(languages),
+        "categories": categories,
+        "broadcast_area": countries,
+        "languages": languages,
       };
 }

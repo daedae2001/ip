@@ -14,8 +14,8 @@ final categoryProvider =
   });
 
   final channels = ref.watch(mainChannels);
-  final categoriesChannels = ref.watch(channelCardProvider.state);
-  final countryCode = ref.watch(countryCodeProvider.state);
+  final categoriesChannels = ref.watch(channelCardProvider);
+  final countryCode = ref.watch(countryCodeProvider);
 
   return channels.when(
     data: (value) {
@@ -26,12 +26,12 @@ final categoryProvider =
         if (channel.categories.isNotEmpty) {
           // countryCode.state.contains(channel.countries[0].name
           if (channel.countries.isNotEmpty) {
-            if (countryCode.state.isNotEmpty) {
+            if (countryCode.isNotEmpty) {
               for (var element in channel.countries) {
-                bool containCountry = countryCode.state.keys.contains(element);
+                bool containCountry = countryCode.keys.contains(element);
               }
             } else {
-              countryCode.state[channel.countries[0]] = channel.countries[0];
+              countryCode[channel.countries[0]] = channel.countries[0];
             }
           }
 
@@ -39,13 +39,13 @@ final categoryProvider =
 
           switch (channel.categories[0]) {
             case "Animation":
-              categoriesChannels.state.forEach((element) =>
+              categoriesChannels.forEach((element) =>
                   element.name == "Animation" ? element.channelCount++ : null);
               sortedByCategory["Animation"]!.add(channel);
 
               break;
             case "Business":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Business" ? element.channelCount++ : null;
               }
 
@@ -53,7 +53,7 @@ final categoryProvider =
               break;
 
             case "Comedy":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Comedy" ? element.channelCount++ : null;
               }
 
@@ -61,7 +61,7 @@ final categoryProvider =
 
               break;
             case "Cooking":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Cooking" ? element.channelCount++ : null;
               }
 
@@ -70,14 +70,14 @@ final categoryProvider =
               break;
 
             case "Education":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Education" ? element.channelCount++ : null;
               }
               sortedByCategory["Education"]!.add(channel);
 
               break;
             case "Entertainment":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Entertainment" ? element.channelCount++ : null;
               }
 
@@ -86,7 +86,7 @@ final categoryProvider =
               break;
 
             case "Family":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Family" ? element.channelCount++ : null;
               }
 
@@ -95,7 +95,7 @@ final categoryProvider =
               break;
 
             case "Kids":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Kids" ? element.channelCount++ : null;
               }
               sortedByCategory["Kids"]!.add(channel);
@@ -112,7 +112,7 @@ final categoryProvider =
 
               break;
             case "Movies":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Movies" ? element.channelCount++ : null;
               }
 
@@ -120,7 +120,7 @@ final categoryProvider =
 
               break;
             case "Music":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Music" ? element.channelCount++ : null;
               }
 
@@ -128,7 +128,7 @@ final categoryProvider =
 
               break;
             case "News":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "News" ? element.channelCount++ : null;
               }
 
@@ -141,7 +141,7 @@ final categoryProvider =
 
               break;
             case "Religious":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Religious" ? element.channelCount++ : null;
               }
 
@@ -149,7 +149,7 @@ final categoryProvider =
 
               break;
             case "Science":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Science" ? element.channelCount++ : null;
               }
 
@@ -157,7 +157,7 @@ final categoryProvider =
 
               break;
             case "Series":
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Series" ? element.channelCount++ : null;
               }
 
@@ -166,14 +166,14 @@ final categoryProvider =
               break;
             case "Shop":
               sortedByCategory["Shop"]!.add(channel);
-              for (var element in categoriesChannels.state) {
+              for (var element in categoriesChannels) {
                 element.name == "Shop" ? element.channelCount++ : null;
               }
 
               break;
 
             case "Sports":
-              categoriesChannels.state.forEach((element) =>
+              categoriesChannels.forEach((element) =>
                   element.name == "Sports" ? element.channelCount++ : null);
 
               sortedByCategory["Sports"]!.add(channel);
@@ -190,7 +190,7 @@ final categoryProvider =
               break;
 
             case "Auto":
-              categoriesChannels.state.forEach((element) =>
+              categoriesChannels.forEach((element) =>
                   element.name == "Auto" ? element.channelCount++ : null);
 
               sortedByCategory["Auto"]!.add(channel);
@@ -201,11 +201,11 @@ final categoryProvider =
           }
         }
       }
-      for (var element in categoriesChannels.state) {
+      for (var element in categoriesChannels) {
         element.name == "Live Tv" ? element.channelCount = x : null;
       }
       print("eneee");
-      print(countryCode.state);
+      print(countryCode);
 
       return AsyncValue.data(sortedByCategory);
     },

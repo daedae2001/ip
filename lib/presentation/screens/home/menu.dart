@@ -17,7 +17,7 @@ class Menu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final channelCard = ref.watch(channelCardProvider.state);
+    final channelCard = ref.watch(channelCardProvider);
 
     final categories = ref.watch(categoryProvider);
 
@@ -75,7 +75,7 @@ class Menu extends ConsumerWidget {
                             : Axis.vertical,
                         shrinkWrap: false,
                         children: List.generate(
-                          channelCard.state.length,
+                          channelCard.length,
                           (index) => FadeInUp(
                             child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -86,14 +86,16 @@ class Menu extends ConsumerWidget {
                                       MaterialPageRoute(
                                         builder: (context) => index == 0
                                             ? SortedByCountryPage(
-                                                allChanellsCount: channelCard
-                                                    .state[index].channelCount,
+                                                allChanellsCount:
+                                                    channelCard[index]
+                                                        .channelCount,
                                               )
                                             : SortedByCategoryPage(
-                                                categoryName: channelCard
-                                                    .state[index].name,
-                                                channels: data[channelCard
-                                                        .state[index].name] ??
+                                                categoryName:
+                                                    channelCard[index].name,
+                                                channels: data[
+                                                        channelCard[index]
+                                                            .name] ??
                                                     [],
                                               ),
                                       )),
@@ -101,9 +103,10 @@ class Menu extends ConsumerWidget {
                                     index: index,
                                     size: size,
                                     channelsCount:
-                                        channelCard.state[index].channelCount,
-                                    icon: channelCard.state[index].iconAddress,
-                                    text: channelCard.state[index].name,
+                                        channelCard[index].channelCount,
+                                    icon: channelCard[index].iconAddress ??
+                                        "https://upload.wikimedia.org/wikipedia/commons/f/f2/SiN_Logo.png",
+                                    text: channelCard[index].name,
                                   ),
                                 )),
                           ),
